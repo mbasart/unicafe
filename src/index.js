@@ -34,6 +34,9 @@ const App = () => {
   const optionGood = 'good'
   const optionNeutral = 'neutral'
   const optionBad = 'bad'
+  const optionAll = 'all'
+  const optionAverag = 'average'
+  const optionPositive = 'positive'
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
@@ -42,6 +45,10 @@ const App = () => {
   const increaseGood = () => setGood(good + 1)
   const increaseNeutral = () => setNeutral(neutral + 1)
   const increaseBad = () => setBad(bad + 1)
+
+  var valueAll = good+neutral+bad
+  var valAverage = (good*1 + bad*(-1))/(valueAll)
+  var valPositive = (good*100)/valueAll
 
   return (
     <div>
@@ -53,6 +60,9 @@ const App = () => {
       <Options option={optionGood} value={good} />
       <Options option={optionNeutral} value={neutral} />
       <Options option={optionBad} value={bad} />
+      <Options option={optionAll} value={valueAll} />
+      <Options option={optionAverag} value={valAverage} />
+      <Options option={optionPositive} value={valPositive} />
     </div>
   )
 }
