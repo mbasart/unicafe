@@ -1,20 +1,23 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const Header = (props) => {
-  console.log(props)
-  return (
-    <div>
-      <h1>{props.title}</h1>
-    </div>
-  )
-}
-
 const Button = (props) => {
   return (
     <button onClick={props.handleClick}>
       {props.text}
     </button>
+  )
+}
+
+const Header = (props) => {
+  console.log(props)
+  return (
+    <div>
+      <h1>give feedback</h1>
+      <Button handleClick={props.increaseGood} text='good' />
+      <Button handleClick={props.increaseNeutral} text='neutral' />
+      <Button handleClick={props.increaseBad} text='bad' />
+    </div>
   )
 }
 
@@ -39,6 +42,7 @@ const Statistics = (props) => {
   if (valueAll === 0) {
     return (
       <div>
+        <h1>statistics</h1>
         No feedback given
       </div>
     )
@@ -46,6 +50,7 @@ const Statistics = (props) => {
 
   return (
     <div>
+      <h1>statistics</h1>
       <table>
         <tbody>
           <Statistic option='good' value={props.good} />
@@ -61,9 +66,6 @@ const Statistics = (props) => {
 }
 
 const App = () => {
-  const nameTitle = 'give feedback'
-  const nameStati = 'statistics'
-
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
@@ -75,11 +77,7 @@ const App = () => {
 
   return (
     <div>
-      <Header title={nameTitle} />
-      <Button handleClick={increaseGood} text='good' />
-      <Button handleClick={increaseNeutral} text='neutral' />
-      <Button handleClick={increaseBad} text='bad' />
-      <Header title={nameStati} />
+      <Header increaseGood={increaseGood} increaseNeutral={increaseNeutral} increaseBad={increaseBad} />
       <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   )
